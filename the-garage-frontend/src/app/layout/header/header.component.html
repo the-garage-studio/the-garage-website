@@ -1,0 +1,31 @@
+<header id="siteHeader" [class.scrolled]="isScrolled">
+  <!-- Logo -->
+  <a class="logo" (click)="scrollTo('hero')" role="button" tabindex="0" aria-label="The Garage — Go to top">
+    <span class="logo__mark"></span>
+    THE GARAGE
+  </a>
+
+  <!-- Nav + CTA -->
+  <div class="nav-links">
+    <nav aria-label="Main navigation">
+      <ul>
+        @for (link of navLinks; track link.targetId) {
+          <li>
+            <a
+              (click)="scrollTo(link.targetId)"
+              role="button"
+              tabindex="0"
+              [attr.aria-label]="'Navigate to ' + link.label"
+            >
+              {{ link.label }}
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <button class="btn btn-primary" (click)="scrollToJoin()" id="header-cta-btn">
+      Join the Garage
+    </button>
+  </div>
+</header>
