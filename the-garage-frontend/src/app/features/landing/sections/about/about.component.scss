@@ -1,0 +1,83 @@
+// ============================================================
+// AboutComponent — Styles
+// 2-column grid with animated metal orb
+// ============================================================
+
+:host {
+  display: contents;
+}
+
+// ---------- Grid ----------
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+
+  h2 {
+    font-size: clamp(30px, 3.4vw, 46px);
+    margin: 20px 0 0;
+    max-width: 420px;
+  }
+}
+
+// ---------- Copy Column ----------
+.about-copy {
+  padding-top: 6px;
+
+  p {
+    font-size: 17px;
+    line-height: 1.85;
+    color: var(--text-dim);
+    margin-bottom: 22px;
+    max-width: 460px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+}
+
+// ---------- Metal Orb ----------
+.metal-orb {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 420px;
+  border-radius: 50%;
+  margin-top: 40px;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.35), transparent 40%),
+    conic-gradient(
+      from 180deg,
+      #2a2a2a,
+      #c8c8c8 18%,
+      #1a1a1a 32%,
+      #3a3a3a 50%,
+      #c9a227 62%,
+      #1a1a1a 78%,
+      #2a2a2a 100%
+    );
+  box-shadow:
+    inset 0 0 60px rgba(0, 0, 0, 0.6),
+    0 30px 80px rgba(0, 0, 0, 0.5);
+  position: relative;
+  animation: orb-float 8s ease-in-out infinite;
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+// ---------- Responsive ----------
+@media (max-width: 700px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

@@ -1,0 +1,101 @@
+// ============================================================
+// FooterComponent — Styles
+// Multi-column footer with copyright bar
+// ============================================================
+
+:host {
+  display: contents;
+}
+
+footer {
+  border-top: 1px solid var(--hairline);
+  padding: 60px 0 40px;
+}
+
+// ---------- Top Row ----------
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+// ---------- Logo ----------
+.logo {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text);
+  padding: 0;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &__mark {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+    flex-shrink: 0;
+  }
+}
+
+// ---------- Columns ----------
+.footer-cols {
+  display: flex;
+  gap: 70px;
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 16px;
+  }
+
+  a {
+    display: block;
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: var(--gold);
+    }
+  }
+}
+
+// ---------- Bottom Bar ----------
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--hairline);
+  padding-top: 26px;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  p {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+}
