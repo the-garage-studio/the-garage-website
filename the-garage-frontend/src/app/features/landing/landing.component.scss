@@ -1,0 +1,13 @@
+// ============================================================
+// LandingComponent — Styles
+// Minimal shell styles; all visual detail lives in child components
+// ============================================================
+
+:host {
+  display: block;
+}
+
+main {
+  // Push content below the fixed header (~86px at scrolled state)
+  // Hero section handles its own full-viewport height
+}
