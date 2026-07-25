@@ -1,0 +1,102 @@
+// ============================================================
+// FeaturesGridComponent — Styles
+// 4-column card grid with gold top-bar hover effect
+// ============================================================
+
+:host {
+  display: contents;
+}
+
+// ---------- Section Header ----------
+.features-head {
+  max-width: 560px;
+  margin-bottom: 70px;
+
+  h2 {
+    font-size: clamp(30px, 3.4vw, 46px);
+    margin-top: 20px;
+  }
+}
+
+// ---------- Grid ----------
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+}
+
+// ---------- Card ----------
+.feature-card {
+  background: var(--surface);
+  padding: 44px 30px;
+  transition: background 0.4s var(--ease);
+  position: relative;
+  overflow: hidden;
+
+  // Gold top-bar that slides in on hover
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s var(--ease);
+  }
+
+  &:hover {
+    background: #1f1f1f;
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+
+  .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    display: block;
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+    margin: 22px 0;
+    stroke: var(--silver);
+    display: block;
+  }
+
+  h3 {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--text-dim);
+  }
+}
+
+// ---------- Responsive ----------
+@media (max-width: 900px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
