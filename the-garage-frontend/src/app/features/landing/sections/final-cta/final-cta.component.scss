@@ -1,0 +1,41 @@
+// ============================================================
+// FinalCtaComponent — Styles
+// Full-width centered CTA with gold accent line
+// ============================================================
+
+:host {
+  display: contents;
+}
+
+.final-cta {
+  text-align: center;
+  padding: 200px 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201, 162, 39, 0.10), transparent 60%),
+    linear-gradient(180deg, #0e0e0e, #141414);
+  position: relative;
+
+  h2 {
+    font-size: clamp(38px, 5.4vw, 72px);
+    margin-bottom: 36px;
+    margin-top: 20px;
+    letter-spacing: -0.02em;
+  }
+}
+
+// ---------- Gold Accent Line ----------
+.mark-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(var(--gold), transparent);
+  margin: 0 auto 30px;
+}
+
+// ---------- Eyebrow centered ----------
+.eyebrow--center {
+  justify-content: center;
+
+  &::before {
+    display: none;
+  }
+}
