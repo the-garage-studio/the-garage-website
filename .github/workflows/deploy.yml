@@ -1,57 +1,69 @@
-name: Deploy to GitHub Pages
+name: Deploy Angular to GitHub Pages
 
 on:
-  # Triggers on push to the main branch (change 'develop' → 'main' when you're ready for prod)
   push:
     branches:
-      - develop
+      - main
 
-  # Allow manual trigger from the Actions tab
   workflow_dispatch:
 
-# Sets permissions so the action can push to the gh-pages branch
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
-    name: Build & Deploy Angular App
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Set up Node.js (matches the project's package manager requirements)
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'npm'
+          node-version: 22
+          cache: npm
           cache-dependency-path: the-garage-frontend/package-lock.json
 
-      # 3. Install dependencies
       - name: Install dependencies
         working-directory: the-garage-frontend
         run: npm ci
 
-      # 4. Build for production
-      #    --base-href must match the GitHub Pages URL path:
-      #    https://the-garage-studio.github.io/the-garage-website/
-      - name: Build Angular application
+      - name: Build Angular
         working-directory: the-garage-frontend
         run: |
-          npx ng build --configuration=production \
+          npx ng build \
+            --configuration=production \
             --base-href="/the-garage-website/"
 
-      # 5. Deploy the dist/browser folder to the gh-pages branch
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: the-garage-frontend/dist/the-garage-frontend/browser
-          # Keep the branch history clean with a single commit per deploy
-          force_orphan: true
-          # Custom commit message
-          commit_message: 'chore: deploy ${{ github.sha }} to GitHub Pages'
+          path: the-garage-frontend/dist/the-garage-frontend/browser
+
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
