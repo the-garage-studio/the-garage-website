@@ -1,0 +1,22 @@
+<section class="why" aria-label="Why The Garage">
+  <div class="why-inner">
+
+    <!-- Left: Statements -->
+    <div class="why-statements container">
+      <span class="eyebrow reveal" #revealEl>Why The Garage</span>
+
+      @for (statement of statements; track statement; let i = $index) {
+        <div class="why-line reveal" #revealEl>
+          <span class="idx">—</span>
+          <h3>{{ statement }}</h3>
+        </div>
+      }
+    </div>
+
+    <!-- Right: Visual ring motif -->
+    <div class="why-visual reveal" #revealEl aria-hidden="true">
+      <div class="ring"></div>
+    </div>
+
+  </div>
+</section>

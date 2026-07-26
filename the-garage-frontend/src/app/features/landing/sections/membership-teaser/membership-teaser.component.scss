@@ -1,0 +1,40 @@
+// ============================================================
+// MembershipTeaserComponent — Styles
+// Centered section with gold radial glow from top
+// ============================================================
+
+:host {
+  display: contents;
+}
+
+.membership {
+  text-align: center;
+  background:
+    radial-gradient(ellipse 50% 80% at 50% 0%, rgba(201, 162, 39, 0.08), transparent 60%),
+    var(--bg);
+  border-top: 1px solid var(--hairline);
+  padding: 160px 0;
+
+  // Eyebrow centered (no left line)
+  .eyebrow {
+    justify-content: center;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  h2 {
+    font-size: clamp(32px, 4vw, 54px);
+    margin: 22px auto 18px;
+    max-width: 640px;
+  }
+
+  p {
+    color: var(--text-dim);
+    font-size: 16px;
+    max-width: 440px;
+    margin: 0 auto 38px;
+    line-height: 1.7;
+  }
+}

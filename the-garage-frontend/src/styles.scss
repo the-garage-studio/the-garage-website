@@ -1,0 +1,186 @@
+// ============================================================
+// THE GARAGE — Global Styles
+// Variables, reset, typography, layout utilities, animations
+// ============================================================
+
+// ---------- Design Tokens ----------
+:root {
+  // Colors
+  --bg: #111111;
+  --surface: #1b1b1b;
+  --surface-2: #161616;
+  --gold: #c9a227;
+  --gold-soft: rgba(201, 162, 39, 0.35);
+  --silver: #c8c8c8;
+  --text: #f5f5f5;
+  --text-dim: rgba(245, 245, 245, 0.58);
+  --hairline: rgba(245, 245, 245, 0.09);
+
+  // Typography
+  --display: 'Syne', sans-serif;
+  --body: 'Inter', sans-serif;
+  --mono: 'IBM Plex Mono', monospace;
+
+  // Easing
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+// ---------- Reset ----------
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--gold);
+  color: #111;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// ---------- Typography ----------
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+// ---------- Layout Utilities ----------
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+// ---------- Eyebrow Label ----------
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  &::before {
+    content: '';
+    width: 22px;
+    height: 1px;
+    background: var(--gold);
+    display: inline-block;
+  }
+}
+
+// ---------- Button System ----------
+.btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 13px 26px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.35s var(--ease);
+  display: inline-block;
+  white-space: nowrap;
+  border: none;
+  background: none;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: #111;
+  border: 1px solid var(--gold);
+
+  &:hover {
+    background: transparent;
+    color: var(--gold);
+    box-shadow: 0 0 24px var(--gold-soft);
+  }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--hairline);
+
+  &:hover {
+    border-color: var(--silver);
+    color: var(--silver);
+  }
+}
+
+.btn-disabled {
+  background: transparent;
+  border: 1px solid var(--hairline);
+  color: var(--text-dim);
+  cursor: default;
+  pointer-events: none;
+}
+
+// ---------- Scroll Reveal ----------
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1s var(--ease),
+    transform 1s var(--ease);
+
+  &.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ---------- Reduced Motion ----------
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  * {
+    animation: none !important;
+  }
+}
+
+// ---------- Section Base ----------
+section {
+  position: relative;
+  padding: 160px 0;
+}
+
+.section-tight {
+  padding: 110px 0;
+}
+
+// ---------- Responsive Base ----------
+@media (max-width: 700px) {
+  .container {
+    padding: 0 22px;
+  }
+}

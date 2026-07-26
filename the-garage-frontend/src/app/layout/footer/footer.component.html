@@ -1,0 +1,32 @@
+<footer>
+  <div class="container">
+
+    <!-- Top: Logo + Link Columns -->
+    <div class="footer-top">
+      <!-- Logo -->
+      <button class="logo" (click)="scrollToTop()" aria-label="Back to top">
+        <span class="logo__mark"></span>
+        THE GARAGE
+      </button>
+
+      <!-- Columns -->
+      <div class="footer-cols">
+        @for (col of columns; track col.heading) {
+          <div class="footer-col">
+            <h4>{{ col.heading }}</h4>
+            @for (link of col.links; track link.label) {
+              <a [href]="link.href">{{ link.label }}</a>
+            }
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Bottom: Copyright + Tagline -->
+    <div class="footer-bottom">
+      <p>© {{ currentYear }} THE GARAGE. ALL RIGHTS RESERVED.</p>
+      <p>CRAFTED FOR THOSE WHO COLLECT.</p>
+    </div>
+
+  </div>
+</footer>

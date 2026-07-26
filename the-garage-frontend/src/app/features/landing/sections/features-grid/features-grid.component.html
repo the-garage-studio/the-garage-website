@@ -1,0 +1,41 @@
+<section id="features" class="section-tight" aria-label="Features">
+  <div class="container">
+
+    <!-- Section Header -->
+    <div class="features-head reveal" #revealEl>
+      <span class="eyebrow">What You Get</span>
+      <h2>A platform built with the same discipline as the machines it celebrates.</h2>
+    </div>
+
+    <!-- Feature Cards Grid -->
+    <div class="feature-grid reveal" #revealEl>
+      @for (feature of features; track feature.num) {
+        <div class="feature-card">
+          <span class="num">{{ feature.num }}</span>
+
+          <!-- SVG Icon -->
+          <svg
+            [attr.viewBox]="feature.svgViewBox"
+            fill="none"
+            stroke-width="1.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            @if (feature.svgPath) {
+              <path [attr.d]="feature.svgPath" />
+            }
+            @if (feature.svgExtra) {
+              <!-- eslint-disable-next-line @angular-eslint/no-innerHTML-elements -->
+              <g [innerHTML]="feature.svgExtra"></g>
+            }
+          </svg>
+
+          <h3>{{ feature.title }}</h3>
+          <p>{{ feature.description }}</p>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
